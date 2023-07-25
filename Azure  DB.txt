@@ -1,0 +1,18 @@
+Main
+Database Name:  WebBlog_db
+DB Server Name : webblogdbserver
+Administrator Username : WebBlog123
+Administrator Password : Wb@12345
+
+Auth
+Database Name:  AuthWebBlog_db
+DB Server Name : webblogdbserver
+Administrator Username : WebBlog123
+Administrator Password : Wb@12345
+
+
+
+
+
+
+

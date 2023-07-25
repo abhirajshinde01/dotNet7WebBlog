@@ -1,0 +1,81 @@
+﻿@model WebBlog.Models.ViewModels.HomeViewModel
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container col-xxl-8 px-4 py-5">
+    <div class="row align-items-center g-5 py-5">
+        <div class="col-12 col-lg-6">
+            <h1 class="display-5 fw-bold lh-1 mb-3">
+                Web Blog - Share Your Thoughts
+            </h1>
+            <p class="lead">
+                Web Blog is portal where you can create articles and share with others.
+                You can upload images with blog and can assign them tags so can easily find later.
+            </p>
+        </div>
+
+        <div class="col-12 col-lg-6">
+            <img src="https://res.cloudinary.com/dko6osxon/image/upload/v1686762608/main_hxpro1.webp"
+                 alt="Web - Dev Blogs" class="d-block mx-lg-auto img-fluid" width="100%" />
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12 d-flex px-4">
+            @if (Model is not null && Model.Tags.Any())
+            {
+                <a class="badge bg-dark me-1" asp-area=""
+                                              asp-controller="Home"
+                                              asp-action="GetAllByTagName"
+                                              asp-route-tagName="All">All</a>
+                @foreach (var tag in Model.Tags)
+                {
+                    <a class="badge bg-dark me-1" asp-area=""
+                                                  asp-controller="Home"
+                                                  asp-action="GetAllByTagName"
+                                                  asp-route-tagName="@tag.Name">@tag.Name</a>
+                }
+            }
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="row">
+            @if (Model is not null && Model.BlogPosts.Any())
+            {
+                foreach (var blogPost in Model.BlogPosts)
+                {
+                    <div class="col-12 col-lg-6">
+                        <div class="mb-5 bg-light box-shadow p-5">
+                            <img src="@blogPost.FeaturedImageUrl" alt="@blogPost.Heading" class="mb-2 d-block img-fluid" width="100%" style=" height:270px" />
+                            <h2 class="mb-4">@blogPost.Heading</h2>
+                            <p class="mb-4">
+                                Author: @blogPost.Author
+                                <br />
+                                Published Date: @blogPost.PublishedDate.ToShortDateString()
+                            </p>
+                            <p class="mb-4">
+                                @foreach (var tag in blogPost.Tags)
+                                {
+                                    <span class="badge bg-secondary me-1">@tag.Name</span>
+                                }
+                            </p>
+                            <p class="mb-4">@blogPost.ShortDescription</p>
+                            <a class="btn btn-dark"
+                       asp-area=""
+                       asp-controller="blogs"
+                       asp-action="Index"
+                       asp-route-urlHandle="@blogPost.UrlHandle">Read More</a>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>

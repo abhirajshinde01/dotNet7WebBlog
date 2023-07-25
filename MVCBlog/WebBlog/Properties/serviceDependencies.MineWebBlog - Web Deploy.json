@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "mssql1": {
+      "secretStore": "AzureAppSettings",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourcegroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/webblogdbserver/databases/WebBlog_db",
+      "type": "mssql.azure",
+      "connectionId": "ConnectionStrings:BlogDbContext"
+    },
+    "mssql2": {
+      "secretStore": "AzureAppSettings",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourcegroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/webblogdbserver/databases/AuthWebBlog_db",
+      "type": "mssql.azure",
+      "connectionId": "ConnectionStrings:AuthDbContext"
+    }
+  }
+}
